@@ -7,7 +7,7 @@ export default function About() {
     return (
         <div className="container mx-auto px-4 py-12 max-w-7xl bg-gray-50 dark:bg-gray-900 min-h-screen transition-colors duration-300">
             <Helmet>
-                <title>About Us - MyBlog</title>
+                <title>About Us - CodeWhiz Chronicles</title>
                 <meta name="description" content="Learn about MyBlog, our mission to share knowledge, and the passion behind our content. Discover what drives us to create engaging articles." />
                 <meta property="og:title" content="About MyBlog: Our Story and Mission" />
                 <meta property="og:description" content="Find out more about the team behind MyBlog, our journey, and commitment to quality content." />
@@ -21,7 +21,7 @@ export default function About() {
                     Unveiling Our Journey
                 </h1>
                 <p className="text-xl text-gray-700 dark:text-gray-300 max-w-3xl mx-auto animate-fade-in-up">
-                    Welcome to MyBlog, where ideas ignite and stories unfold. We're more than just a blog; we're a community passionate about sharing insights, knowledge, and experiences across a diverse range of topics.
+                    Welcome to CodeWhiz Chronicles, where ideas ignite and stories unfold. We're more than just a blog; we're a community passionate about sharing insights, knowledge, and experiences across a diverse range of topics.
                 </p>
             </div>
 
@@ -33,7 +33,7 @@ export default function About() {
                         Our Story & Mission
                     </h2>
                     <p className="text-gray-700 dark:text-gray-300 leading-relaxed mb-4">
-                        MyBlog started with a simple vision: to create a platform where curious minds could explore engaging content, from the latest tech trends and insightful coding tutorials to reflections on everyday life. We believe in the power of words to inspire, educate, and entertain. Our mission is to deliver high-quality, well-researched, and thought-provoking articles that resonate with our readers.
+                        CodeWhiz Chronicles started with a simple vision: to create a platform where curious minds could explore engaging content, from the latest tech trends and insightful coding tutorials to reflections on everyday life. We believe in the power of words to inspire, educate, and entertain. Our mission is to deliver high-quality, well-researched, and thought-provoking articles that resonate with our readers.
                     </p>
                     <p className="text-gray-700 dark:text-gray-300 leading-relaxed">
                         Every piece of content is crafted with care, aiming to spark conversations and foster a deeper understanding of the world around us. We are committed to continuous learning and sharing that journey with you.
@@ -44,7 +44,7 @@ export default function About() {
                 <div className="animate-fade-in-right hidden lg:block">
                     {/* REPLACE THIS PLACEHOLDER IMAGE URL with a relevant image or illustration */}
                     <img
-                        src="https://via.placeholder.com/600x400/3B82F6/FFFFFF?text=MyBlog+Story"
+                        src="https://a.storyblok.com/f/99519/1100x620/0aa998eef4/blog-hero-image-3.png/m/1600x902/filters:format(png)"
                         alt="MyBlog Team collaborating or a creative representation of ideas"
                         className="rounded-xl shadow-xl w-full h-auto object-cover border border-transparent dark:border-gray-700"
                     />
@@ -59,9 +59,9 @@ export default function About() {
                         What We Offer
                     </h2>
                     <ul className="list-disc list-inside space-y-3 text-gray-700 dark:text-gray-300">
-                        <li>In-depth articles on **Tech** advancements and industry insights.</li>
-                        <li>Practical guides and tutorials for **Code** enthusiasts of all levels.</li>
-                        <li>Relatable stories and reflections on **Life**, self-improvement, and well-being.</li>
+                        <li>In-depth articles on <strong>Tech</strong> advancements and industry insights.</li>
+                        <li>Practical guides and tutorials for <strong>Code</strong> enthusiasts of all levels.</li>
+                        <li>Relatable stories and reflections on <strong>Life</strong>, self-improvement, and well-being.</li>
                         <li>Regularly updated content to keep you informed and engaged.</li>
                         <li>A platform for thoughtful discussion and community interaction.</li>
                     </ul>
@@ -70,14 +70,14 @@ export default function About() {
                 {/* Why Choose Us Section */}
                 <div className="bg-white dark:bg-gray-800 rounded-xl shadow-2xl p-8 md:p-10 animate-fade-in-up delay-200 transition-colors duration-300 border border-transparent dark:border-gray-700">
                     <h2 className="text-3xl font-bold text-gray-900 dark:text-white mb-6 border-b border-gray-200 dark:border-gray-700 pb-4">
-                        Why Choose MyBlog?
+                        Why Choose CodeWhiz Chronicles?
                     </h2>
                     <ul className="list-disc list-inside space-y-3 text-gray-700 dark:text-gray-300">
-                        <li>**Expert Insights:** Content crafted by passionate writers and subject matter experts.</li>
-                        <li>**Diverse Topics:** A broad spectrum of categories ensures there's something for everyone.</li>
-                        <li>**Engaging Community:** Join discussions and share your own perspectives.</li>
-                        <li>**User-Focused Design:** A clean, intuitive interface for an optimal reading experience.</li>
-                        <li>**Commitment to Quality:** We prioritize accuracy, clarity, and depth in every article.</li>
+                        <li><strong>Expert Insights:</strong> Content crafted by passionate writers and subject matter experts.</li>
+                        <li><strong>Diverse Topics:</strong> A broad spectrum of categories ensures there's something for everyone.</li>
+                        <li><strong>Engaging Community:</strong> Join discussions and share your own perspectives.</li>
+                        <li><strong>User-Focused Design:</strong> A clean, intuitive interface for an optimal reading experience.</li>
+                        <li><strong>Commitment to Quality:</strong> We prioritize accuracy, clarity, and depth in every article.</li>
                     </ul>
                 </div>
             </div>
@@ -123,7 +123,6 @@ export default function About() {
             </div>
 
             {/* Join Our Community Section */}
-            {/* Join Our Community Section */}
 <div className="mt-16 text-center bg-gray-100 dark:bg-gray-850 p-10 rounded-xl shadow-lg animate-fade-in-up transition-colors duration-300">
     <h2 className="text-3xl md:text-4xl font-extrabold text-gray-900 dark:text-gray-700 mb-6">
         Join Our Growing Community!
@@ -163,7 +162,7 @@ export default function About() {
                     Our Vision for the Future
                 </h2>
                 <p className="text-gray-700 dark:text-gray-300 leading-relaxed text-center max-w-3xl mx-auto">
-                    We are constantly evolving, and our vision for MyBlog's future is exciting! We aim to expand our content categories, introduce interactive features, host community events, and continue to be a leading source of insightful and inspiring content. Your journey with us is just beginning.
+                    We are constantly evolving, and our vision for CodeWhiz Chronicles's future is exciting! We aim to expand our content categories, introduce interactive features, host community events, and continue to be a leading source of insightful and inspiring content. Your journey with us is just beginning.
                 </p>
             </div>
 
