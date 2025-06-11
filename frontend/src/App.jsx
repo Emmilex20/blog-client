@@ -15,6 +15,8 @@ import ResetPasswordPage from './pages/ResetPassword';
 import PrivacyPolicy from './pages/PrivacyPolicy';
 import ScrollToTop from './components/ScrollToTop'; 
 import AboutPage from './pages/About';
+import CategoryPage from './pages/Category';
+import AllCategoriesPage from './pages/AllCategoriesPage';
 
 // NEW IMPORTS FOR ADMIN DASHBOARD
 import AdminDashboard from './pages/AdminDashboard'; // This replaces UserManagement as the main dashboard
@@ -46,6 +48,8 @@ function App() {
                 <Route path="/reset-password/:token" element={<ResetPasswordPage />} />
                 <Route path="/privacy-policy" element={<PrivacyPolicy />} />
                 <Route path="/about" element={<AboutPage />} />
+                <Route path="/category/:categorySlug" element={<CategoryPage />} />
+                <Route path="/categories" element={<AllCategoriesPage />} /> 
 
                 {/* Protected routes for Admin */}
                 <Route element={<ProtectedRoute allowedRoles={['admin']} />}>

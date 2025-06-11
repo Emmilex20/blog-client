@@ -32,7 +32,6 @@ router.get('/', async (req, res) => {
 });
 
 // Get single post
-// CORRECTED LINE: Changed '/posts/:id' to '/:id'
 router.get('/:id', async (req, res) => {
   try {
     const post = await Post.findById(req.params.id);
@@ -42,7 +41,6 @@ router.get('/:id', async (req, res) => {
     res.json(post);
   } catch (error) {
     console.error('Error fetching single post:', error);
-    // Mongoose can throw a CastError if the ID format is invalid
     if (error.name === 'CastError') {
       return res.status(400).json({ message: 'Invalid post ID format.' });
     }
@@ -63,9 +61,7 @@ router.post('/', protect, authorize('admin'), async (req, res) => {
     res.status(201).json(post);
   } catch (error) {
     console.error('Error creating post:', error);
-    // Mongoose validation errors will have a `name` of 'ValidationError'
     if (error.name === 'ValidationError') {
-      // You can parse error.errors to send more specific validation messages
       return res.status(400).json({ message: error.message, errors: error.errors });
     }
     res.status(500).json({ message: 'Failed to create post due to a server error.' });
