@@ -14,6 +14,7 @@ import ForgotPasswordPage from './pages/ForgotPassword';
 import ResetPasswordPage from './pages/ResetPassword'; 
 import PrivacyPolicy from './pages/PrivacyPolicy';
 import ScrollToTop from './components/ScrollToTop'; 
+import AboutPage from './pages/About';
 
 // NEW IMPORTS FOR ADMIN DASHBOARD
 import AdminDashboard from './pages/AdminDashboard'; // This replaces UserManagement as the main dashboard
@@ -44,6 +45,7 @@ function App() {
                 <Route path="/forgot-password" element={<ForgotPasswordPage />} /> 
                 <Route path="/reset-password/:token" element={<ResetPasswordPage />} />
                 <Route path="/privacy-policy" element={<PrivacyPolicy />} />
+                <Route path="/about" element={<AboutPage />} />
 
                 {/* Protected routes for Admin */}
                 <Route element={<ProtectedRoute allowedRoles={['admin']} />}>
