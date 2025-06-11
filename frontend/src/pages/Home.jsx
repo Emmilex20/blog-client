@@ -117,7 +117,7 @@ const NewsletterSignup = () => (
 
 // About Me/Blog Component (Placeholder)
 const AboutMe = () => (
-    <SectionContainer title="About MyBlog" className="animate-slide-in-right delay-100">
+    <SectionContainer title="About CodeWhiz Chronicles" className="animate-slide-in-right delay-100">
         <img
             src="/profilepic.png"
             alt="About Me"
@@ -126,7 +126,7 @@ const AboutMe = () => (
         />
         {/* Added dark:text-gray-300 */}
         <p className="text-gray-700 text-center text-sm mb-4 dark:text-gray-300">
-            Hello! I'm the voice behind MyBlog, sharing insights on tech, life, and code. Join me on this journey of learning and discovery.
+            Hello! I'm the voice behind CodeWhiz Chronicles, sharing insights on tech, life, and code. Join me on this journey of learning and discovery.
         </p>
         {/* Added dark:text-blue-400 */}
         <Link to="/about" className="block text-center text-blue-600 hover:underline text-sm font-semibold dark:text-blue-400">
