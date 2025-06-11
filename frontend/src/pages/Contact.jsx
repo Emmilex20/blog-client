@@ -11,7 +11,8 @@ export default function Contact() {
         message: '',
     });
 
-    const [state, handleSubmitFormspree, resetForm] = useForm('mldnjqnw'); // Use only the form ID
+    // Replace 'mldnjqnw' with your actual Formspree form ID
+    const [state, handleSubmitFormspree, resetForm] = useForm('mldnjqnw');
 
     const handleChange = (e) => {
         const { name, value } = e.target;
@@ -23,35 +24,24 @@ export default function Contact() {
 
     const onSubmit = async (e) => {
         e.preventDefault();
-        // The handleSubmitFormspree function already manages state.submitting, state.succeeded, etc.
         await handleSubmitFormspree(formData);
     };
 
     const formStatus = {
         submitting: state.submitting,
         success: state.succeeded,
-        // Safely check state.errors. Formspree returns an array of errors or null/undefined
         error: state.errors && state.errors.length > 0,
     };
 
-    // Corrected useEffect logic:
     useEffect(() => {
-        // If the form submission was successful
         if (state.succeeded) {
-            // Immediately clear the local form data for the next submission
             setFormData({ name: '', email: '', subject: '', message: '' });
-
-            // After a delay, reset Formspree's internal state (which includes state.succeeded)
-            // This allows the success message to be visible for 5 seconds.
             const timer = setTimeout(() => {
                 resetForm();
-            }, 5000);
-
-            // Cleanup function for useEffect: clear the timeout if the component unmounts
-            // or if state.succeeded changes again before the timeout fires.
+            }, 5000); // Display success message for 5 seconds
             return () => clearTimeout(timer);
         }
-    }, [state.succeeded, resetForm]); // Dependencies: only re-run when succeeded state changes or resetForm identity changes (which it shouldn't for useForm)
+    }, [state.succeeded, resetForm]);
 
     return (
         <div className="container mx-auto px-4 py-12 max-w-7xl bg-gray-50 dark:bg-gray-900 min-h-screen transition-colors duration-300">
@@ -60,7 +50,8 @@ export default function Contact() {
                 <meta name="description" content="Have questions or feedback? Contact MyBlog through our form, email, or phone. We'd love to hear from you!" />
                 <meta property="og:title" content="Contact MyBlog" />
                 <meta property="og:description" content="Reach out to the MyBlog team for inquiries, support, or collaborations." />
-                <meta property="og:url" content="http://localhost:5173/contact" />
+                {/* *** IMPORTANT: Update this URL to your actual deployed contact page URL on Vercel *** */}
+                <meta property="og:url" content="https://blog-client-rust.vercel.app/contact" />
             </Helmet>
 
             <div className="text-center mb-12">
@@ -208,8 +199,9 @@ export default function Contact() {
 
                     <div className="bg-white dark:bg-gray-800 rounded-xl shadow-2xl overflow-hidden animate-slide-in-right transition-colors duration-300 border border-transparent dark:border-gray-700">
                         <h2 className="sr-only">Our Location on Map</h2>
+                        {/* Corrected Google Maps embed URL */}
                         <iframe
-                            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3964.673831770932!2d3.5065095!3d6.435773199999999!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x103bf6509214731f%3A0xe54e38e658e3f94e!2sLekki%20Phase%201%20Market!5e0!3m2!1sen!2sng!4v1718015949547!5m2!1sen!2sng"
+                            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d15853.518607141506!2d3.47355285!3d6.44686995!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x103bf57422f77b5f%3A0x6b245a4a9c6c4c0!2sLekki!5e0!3m2!1sen!2sng!4v1718037300000!5m2!1sen!2sng"
                             width="100%"
                             height="350"
                             style={{ border: 0 }}

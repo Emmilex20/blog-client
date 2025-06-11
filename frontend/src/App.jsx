@@ -13,6 +13,7 @@ import Signup from './pages/Signup';
 import ForgotPasswordPage from './pages/ForgotPassword';
 import ResetPasswordPage from './pages/ResetPassword'; 
 import PrivacyPolicy from './pages/PrivacyPolicy';
+import ScrollToTop from './components/ScrollToTop'; 
 
 // NEW IMPORTS FOR ADMIN DASHBOARD
 import AdminDashboard from './pages/AdminDashboard'; // This replaces UserManagement as the main dashboard
@@ -32,6 +33,7 @@ function App() {
             <Navbar /> {/* Navbar can now access AuthContext via useAuth() */}
             <ThemeToggle />
             <main className="flex-grow">
+              <ScrollToTop />
               <Routes>
                 <Route path="/" element={<Home />} />
                 <Route path="/blog" element={<Blog />} />
