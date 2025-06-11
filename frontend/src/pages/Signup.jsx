@@ -4,6 +4,9 @@ import { Link, useNavigate } from 'react-router-dom';
 import { Helmet } from 'react-helmet-async';
 import { useAuth } from '../context/AuthContext'; // Import useAuth
 
+// Get the base API URL from the environment variable
+const API_BASE_URL = import.meta.env.VITE_API_URL;
+
 export default function Signup() {
     const [formData, setFormData] = useState({
         username: '',
@@ -25,8 +28,9 @@ export default function Signup() {
         setError(null);
 
         try {
-            // Adjust API base URL if needed, but '/api/auth/signup' is typical for relative paths
-            const response = await fetch('/api/auth/signup', {
+            // *** THE CRITICAL CHANGE IS HERE ***
+            // Use the API_BASE_URL before your relative path
+            const response = await fetch(`${API_BASE_URL}/api/auth/signup`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -37,7 +41,6 @@ export default function Signup() {
             const data = await response.json();
 
             if (!response.ok) {
-                // Throw error with message from backend if available, otherwise generic
                 throw new Error(data.message || 'Signup failed. Please try again.');
             }
 
@@ -129,7 +132,7 @@ export default function Signup() {
                 </form>
                 <p className="mt-6 text-center text-sm text-gray-600 dark:text-gray-300">
                     Already have an account?{' '}
-                    <Link to="/admin/login" className="font-medium text-blue-600 dark:text-blue-400 hover:text-blue-500 dark:hover:text-blue-300 transition duration-300">
+                    <Link to="/admin/login" className="font-medium text-blue-600 dark:text-blue-400 hover:text-blue-500 dark:hover:text-blue-300">
                         Log in here
                     </Link>
                 </p>
