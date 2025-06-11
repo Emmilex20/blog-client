@@ -3,15 +3,19 @@ import { useNavigate, Link } from 'react-router-dom';
 import { Helmet } from 'react-helmet-async';
 import { useAuth } from '../context/AuthContext'; // Import useAuth
 
+// Get the base API URL from the environment variable
+// In Vite, environment variables starting with VITE_ are exposed via import.meta.env
+const API_BASE_URL = import.meta.env.VITE_API_URL;
+
 export default function Login() {
     const [formData, setFormData] = useState({
-        username: '', // This state holds the value from the input field
+        username: '',
         password: '',
     });
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState(null);
     const navigate = useNavigate();
-    const { login } = useAuth(); // Get login function from context
+    const { login } = useAuth();
 
     const handleChange = (e) => {
         setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -22,22 +26,21 @@ export default function Login() {
         setLoading(true);
         setError(null);
 
-        // Frontend validation (good practice to have this)
         if (!formData.username || !formData.password) {
             setError('Username/Email and password are required.');
             setLoading(false);
-            return; // Stop execution if validation fails
+            return;
         }
 
         try {
-            const response = await fetch('/api/auth/login', {
+            // *** THE CRITICAL CHANGE IS HERE ***
+            // Use the API_BASE_URL before your relative path
+            const response = await fetch(`${API_BASE_URL}/api/auth/login`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
                 },
                 body: JSON.stringify({
-                    // The backend's authController expects 'loginIdentifier'
-                    // We map the 'username' from our formData to 'loginIdentifier' for the API request.
                     loginIdentifier: formData.username,
                     password: formData.password,
                 }),
@@ -46,17 +49,13 @@ export default function Login() {
             const data = await response.json();
 
             if (!response.ok) {
-                // If the backend sends an error response (e.g., 400, 401),
-                // the 'message' field from the backend will be used.
                 throw new Error(data.message || 'Login failed. Please try again.');
             }
 
-            // Use the login function from AuthContext
             login(data.token, data.user);
-            navigate('/'); // Redirect to homepage or dashboard after successful login
+            navigate('/');
 
         } catch (err) {
-            // Catch network errors or errors thrown from the response.ok check
             setError(err.message || 'An unexpected error occurred during login. Check your network.');
             console.error('Login error:', err);
         } finally {
@@ -82,12 +81,12 @@ export default function Login() {
                         <input
                             type="text"
                             id="username"
-                            name="username" // Keep name as 'username' for handleChange
+                            name="username"
                             value={formData.username}
                             onChange={handleChange}
                             required
                             className="appearance-none block w-full px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-md shadow-sm placeholder-gray-400 dark:placeholder-gray-500 focus:outline-none focus:ring-blue-500 focus:border-blue-500 dark:focus:ring-blue-400 dark:focus:border-blue-400 sm:text-sm text-gray-900 dark:text-gray-100 bg-white dark:bg-gray-700 transition duration-200"
-                            placeholder="Enter your username or email" // Update placeholder
+                            placeholder="Enter your username or email"
                         />
                     </div>
                     <div>
@@ -95,9 +94,8 @@ export default function Login() {
                             <label htmlFor="password" className="block text-sm font-medium text-gray-700 dark:text-gray-300">
                                 Password
                             </label>
-                            {/* Forgot Password Link */}
                             <Link
-                                to="/forgot-password" // This route needs to be defined in your router
+                                to="/forgot-password"
                                 className="text-xs font-medium text-blue-600 hover:text-blue-500 dark:text-blue-400 dark:hover:text-blue-300 transition duration-300"
                             >
                                 Forgot password?
