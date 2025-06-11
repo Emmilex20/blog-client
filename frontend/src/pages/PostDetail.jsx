@@ -25,7 +25,7 @@ export default function PostDetail() {
         setError(null);
 
         try {
-            const data = await authFetch(`/api/posts/${id}`);
+            const data = await authFetch(`/posts/${id}`);
             setPost(data);
         } catch (err) {
             console.error("Failed to fetch post details:", err);

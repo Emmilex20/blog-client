@@ -41,7 +41,7 @@ export default function Blog() {
     setError(null);
 
     try {
-      const res = await fetch(`${import.meta.env.VITE_API_URL}/api/posts?page=${page}&limit=${limit}&category=${category}`);
+      const res = await fetch(`${import.meta.env.VITE_API_URL}/posts?page=${page}&limit=${limit}&category=${category}`);
       if (!res.ok) {
         throw new Error(`HTTP error! status: ${res.status}`);
       }
@@ -61,7 +61,7 @@ export default function Blog() {
     setCategoriesLoading(true);
     setCategoriesError(null);
     try {
-      const res = await fetch(`${import.meta.env.VITE_API_URL}/api/categories`);
+      const res = await fetch(`${import.meta.env.VITE_API_URL}/categories`);
       if (!res.ok) {
         throw new Error(`HTTP error! status: ${res.status}`);
       }

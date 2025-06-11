@@ -15,7 +15,7 @@ export default function UserManagement() {
   const fetchUsers = useCallback(async () => {
     try {
       setLoading(true);
-      const data = await authFetch('/api/auth/users'); // Corrected API endpoint base: '/api/auth/users'
+      const data = await authFetch('/auth/users'); // Corrected API endpoint base: '/api/auth/users'
       setUsers(data);
       setError(null);
     } catch (err) {
@@ -44,6 +44,7 @@ export default function UserManagement() {
     setUpdatingUserId(userId); // Set loading state for this specific user button
     try {
       // Corrected API endpoint base: '/api/auth/users/${userId}/role'
+      // eslint-disable-next-line no-unused-vars
       const response = await authFetch(`/api/auth/users/${userId}/role`, {
         method: 'PUT',
         headers: {

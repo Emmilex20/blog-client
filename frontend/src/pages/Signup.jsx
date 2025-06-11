@@ -30,7 +30,7 @@ export default function Signup() {
         try {
             // *** THE CRITICAL CHANGE IS HERE ***
             // Use the API_BASE_URL before your relative path
-            const response = await fetch(`${API_BASE_URL}/api/auth/signup`, {
+            const response = await fetch(`${API_BASE_URL}/auth/signup`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',

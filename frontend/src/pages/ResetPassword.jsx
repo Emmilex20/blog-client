@@ -53,7 +53,7 @@ export default function ResetPassword() {
         }
 
         try {
-            const response = await fetch(`/api/auth/reset-password/${token}`, {
+            const response = await fetch(`/auth/reset-password/${token}`, {
                 method: 'PUT',
                 headers: {
                     'Content-Type': 'application/json',

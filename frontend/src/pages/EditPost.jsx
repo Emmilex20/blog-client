@@ -24,7 +24,7 @@ export default function EditPost() {
     setIsLoading(true);
     setError(null);
     try {
-      const data = await authFetch(`/api/posts/${id}`);
+      const data = await authFetch(`/posts/${id}`);
       setFormData({
         title: data.title || '',
         content: data.content || '',
@@ -57,7 +57,7 @@ export default function EditPost() {
     setSaveError(null);
 
     try {
-      await authFetch(`/api/posts/${id}`, {
+      await authFetch(`/posts/${id}`, {
         method: 'PUT',
         body: JSON.stringify(formData),
       });

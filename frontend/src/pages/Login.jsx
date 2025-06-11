@@ -35,7 +35,7 @@ export default function Login() {
         try {
             // *** THE CRITICAL CHANGE IS HERE ***
             // Use the API_BASE_URL before your relative path
-            const response = await fetch(`${API_BASE_URL}/api/auth/login`, {
+            const response = await fetch(`${API_BASE_URL}/auth/login`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',

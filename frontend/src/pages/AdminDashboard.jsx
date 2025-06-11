@@ -6,6 +6,7 @@ import { Trash2, Edit, ExternalLink, Save, XCircle } from 'lucide-react'; // Add
 
 export default function AdminDashboard() {
   const { authFetch, user, userRole } = useAuth();
+  // eslint-disable-next-line no-unused-vars
   const navigate = useNavigate();
 
   const [activeTab, setActiveTab] = useState('posts'); // 'posts' or 'users'
@@ -32,7 +33,7 @@ export default function AdminDashboard() {
     setErrorPosts(null);
     try {
       // Pass pagination parameters to the backend
-      const response = await authFetch(`/api/posts?page=${currentPage}&limit=${postsPerPage}`);
+      const response = await authFetch(`/posts?page=${currentPage}&limit=${postsPerPage}`);
       setPosts(response.posts); // Access the 'posts' array from the response
       setTotalPosts(response.totalPosts); // Assuming backend sends total count
       setTotalPages(response.totalPages); // Assuming backend sends total pages
@@ -49,7 +50,7 @@ export default function AdminDashboard() {
     setIsLoadingUsers(true);
     setErrorUsers(null);
     try {
-      const data = await authFetch('/api/users'); // New backend endpoint
+      const data = await authFetch('/users'); // New backend endpoint
       setUsers(data); // Assuming data is an array of users
     } catch (err) {
       console.error('Error fetching users:', err);
@@ -74,7 +75,7 @@ export default function AdminDashboard() {
   const handleDeletePost = async (postId) => {
     if (window.confirm('Are you sure you want to delete this post? This action cannot be undone.')) {
       try {
-        await authFetch(`/api/posts/${postId}`, { method: 'DELETE' });
+        await authFetch(`/posts/${postId}`, { method: 'DELETE' });
         alert('Post deleted successfully!');
         fetchPosts(); // Refresh the list of posts
       } catch (err) {
@@ -92,7 +93,7 @@ export default function AdminDashboard() {
     }
     if (window.confirm(`Are you sure you want to delete user "${username}"? This action cannot be undone.`)) {
       try {
-        await authFetch(`/api/users/${userId}`, { method: 'DELETE' });
+        await authFetch(`/users/${userId}`, { method: 'DELETE' });
         alert('User deleted successfully!');
         fetchUsers(); // Refresh the list of users
       } catch (err) {
@@ -120,7 +121,7 @@ export default function AdminDashboard() {
     }
 
     try {
-      await authFetch(`/api/users/${userId}`, { // Assuming PUT /api/users/:id for role update
+      await authFetch(`/users/${userId}`, { // Assuming PUT /api/users/:id for role update
         method: 'PUT',
         headers: {
           'Content-Type': 'application/json',

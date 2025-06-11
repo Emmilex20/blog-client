@@ -13,6 +13,7 @@ import { Autoplay, Pagination, Navigation } from 'swiper/modules';
 // Import the useAuth hook from your AuthContext
 import { useAuth } from '../context/AuthContext';
 // Import the useTheme hook from your ThemeContext
+// eslint-disable-next-line no-unused-vars
 import { useTheme } from '../context/ThemeContext'; // <--- Import useTheme
 
 // --- Reusable Components for better organization ---
@@ -157,6 +158,7 @@ const CategoriesSection = ({ categoriesData }) => (
 export default function Home() {
     const { authFetch } = useAuth();
     // const { theme } = useTheme(); // You can uncomment and use this if you need to conditionally render based on theme
+    // eslint-disable-next-line no-unused-vars
     const [posts, setPosts] = useState([]); // This will hold all fetched posts
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
@@ -185,7 +187,7 @@ export default function Home() {
                     return;
                 }
 
-                const data = await authFetch('/api/posts?limit=50');
+                const data = await authFetch('/posts?limit=50');
                 const fetchedPosts = data.posts || [];
                 console.log("Fetched posts data (raw from API):", fetchedPosts, "Length:", fetchedPosts.length); // DIAGNOSTIC LOG: Raw fetched data
 

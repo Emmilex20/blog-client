@@ -34,7 +34,7 @@ export default function CreatePost() {
             if (isEditing) {
                 try {
                     // FIX: Ensure API prefix is included for fetching a single post for editing
-                    const data = await authFetch(`/api/posts/${id}`);
+                    const data = await authFetch(`/posts/${id}`);
                     setTitle(data.title);
                     setCategory(data.category || '');
                     setContent(data.content);
@@ -66,7 +66,7 @@ export default function CreatePost() {
         const method = isEditing ? 'PUT' : 'POST';
         
         // FIX: Ensure API prefix is included for both POST and PUT requests
-        const url = isEditing ? `/api/posts/${id}` : '/api/posts';
+        const url = isEditing ? `/posts/${id}` : '/posts';
 
         if (!title || !category || !content || !imageURL) {
             setSubmitError('All fields (Title, Category, Content, Image) are required.');
