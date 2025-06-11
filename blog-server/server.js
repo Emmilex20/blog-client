@@ -29,11 +29,32 @@ const { protect, authorize } = require('./middleware/authMiddleware'); // Used i
 
 
 // --- Middleware ---
+
+// *** CORS CONFIGURATION ***
+// Define allowed origins
+const allowedOrigins = [
+    'http://localhost:5173',                  // For local development
+    'https://blog-client-rust.vercel.app'    // Your deployed frontend on Vercel
+];
+
+// Configure CORS middleware
 app.use(cors({
-    origin: 'http://localhost:5173', // Adjust this to your frontend's URL
-    credentials: true
+    origin: function (origin, callback) {
+        // Allow requests with no origin (like mobile apps, curl requests, or same-origin requests)
+        if (!origin) return callback(null, true);
+        if (allowedOrigins.indexOf(origin) === -1) {
+            const msg = `The CORS policy for this site does not allow access from the specified Origin: ${origin}`;
+            return callback(new Error(msg), false);
+        }
+        return callback(null, true);
+    },
+    methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'], // Explicitly allow common HTTP methods
+    allowedHeaders: ['Content-Type', 'Authorization'],    // Explicitly allow common headers, especially for auth
+    credentials: true                                     // Essential if you're sending cookies or authorization headers (like JWT in `Authorization` header)
 }));
-app.use(express.json());
+
+app.use(express.json()); // To parse JSON request bodies
+
 
 // --- Mount your API Routes ---
 
@@ -55,20 +76,23 @@ app.get('/api/categories', (req, res) => {
 
 
 // --- Error Handling ---
+// Catch 404 and forward to error handler
 app.use((req, res, next) => {
     const error = new Error('Not Found');
     error.status = 404;
     next(error);
 });
 
+// General error handler
 app.use((err, req, res, next) => {
     res.status(err.status || 500);
     if (process.env.NODE_ENV === 'development') {
-        console.error(err.stack);
+        console.error(err.stack); // Log stack trace in development
     }
     res.json({
         error: {
             message: err.message,
+            // Include stack trace in development only
             ...(process.env.NODE_ENV === 'development' && { stack: err.stack })
         }
     });
